@@ -3,9 +3,8 @@ package baseball.application.port.in;
 import baseball.domain.Pitch;
 import baseball.util.PitchCheck;
 import baseball.util.SelfValidating;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class PlayInningCommand extends SelfValidating<PlayInningCommand> {
 
@@ -22,11 +21,20 @@ public class PlayInningCommand extends SelfValidating<PlayInningCommand> {
     public Map<Pitch, Integer> getPlayerPitches() {
 
         if (playerPitchMap == null) {
-            playerPitchMap = IntStream.range(0, userInput.length()).boxed().collect(
-                    Collectors.toMap(index -> new Pitch(Character.getNumericValue(userInput.charAt(index))),
-                            index -> index));
+            playerPitchMap = createPitches();
         }
 
         return playerPitchMap;
+    }
+
+    private Map<Pitch, Integer> createPitches() {
+        Map<Pitch, Integer> pitchMap = new HashMap<>();
+
+        for (int index = 0; index < userInput.length(); index++) {
+            char element = userInput.charAt(index);
+            pitchMap.put(new Pitch(Character.getNumericValue(element)), index);
+        }
+
+        return pitchMap;
     }
 }

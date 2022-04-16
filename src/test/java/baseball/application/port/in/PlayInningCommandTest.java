@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class PlayInningCommandTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"", "1234", "abc", "012", "111"})
+    @ValueSource(strings = {"", "1234", "abc", "012", "111", "12", "a12"})
     void 예외_테스트(String input) {
         assertThatIllegalArgumentException().isThrownBy(() -> new PlayInningCommand(input));
     }
