@@ -2,7 +2,7 @@ package baseball.application.service;
 
 import baseball.application.port.in.PlayInningCommand;
 import baseball.application.port.in.PlayInningUsecase;
-import baseball.application.port.out.GetAiPitchesQuery;
+import baseball.application.port.out.GetAiPitchesPort;
 import baseball.domain.GameResult;
 import baseball.domain.Pitch;
 import java.util.EnumMap;
@@ -15,7 +15,7 @@ public class PlayInningService implements PlayInningUsecase {
 
     private static final int NOT_FOUND = -1;
 
-    private final GetAiPitchesQuery getAiPitchesQuery;
+    private final GetAiPitchesPort getAiPitchesPort;
 
     private enum PitchResult {
         BALL, STRIKE, NOTHING
@@ -24,7 +24,7 @@ public class PlayInningService implements PlayInningUsecase {
     @Override
     public GameResult playInning(PlayInningCommand command) {
         Map<Pitch, Integer> playerPitches = command.getPlayerPitches();
-        Map<Pitch, Integer> aiPitches = getAiPitchesQuery.getAiPitches();
+        Map<Pitch, Integer> aiPitches = getAiPitchesPort.getAiPitches();
 
         Map<PitchResult, Integer> resultMap = new EnumMap<>(PitchResult.class);
         resultMap.put(PitchResult.BALL, 0);
