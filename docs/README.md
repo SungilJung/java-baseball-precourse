@@ -15,7 +15,7 @@
     * 스트라이크, 볼, 낫싱을 판별한다.
     * 판별 방식은 기능 요구사항을 참고
     * 사용자가 잘못된 값을 입력할 경우, IllegalArgumentException을 발생시키고, 애플리케이션을 종료한다.
-* [bs-2] (완료) 컴퓨터 플레이어를 위해 1~9까지 서로 다른 수 3개를 랜럼하게 생성한다.
+* [bs-2] (완료) 컴퓨터 플레이어를 위해 1~9까지 서로 다른 수 3개를 랜덤하게 생성한다.
     * Random값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickNumberInRange()를 활용
 * [bs-3] 사용자로부터 1~9까지 서로 다른 수 3개를 입력받는다.
     * 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의readLine()을 활용
