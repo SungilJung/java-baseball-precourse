@@ -1,7 +1,7 @@
 package baseball.application.port.in;
 
-import baseball.domain.GameResult;
+import baseball.domain.PitchingResult;
 
 public interface PlayInningUsecase {
-    GameResult playInning(PlayInningCommand command);
+    PitchingResult playInning(PlayInningCommand command);
 }
