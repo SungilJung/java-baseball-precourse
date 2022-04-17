@@ -3,34 +3,37 @@ package baseball.adapter.out.ephemeral;
 import baseball.application.port.out.GenerateAiPitchesPort;
 import baseball.application.port.out.GetAiPitchesPort;
 import baseball.domain.Pitch;
+import baseball.domain.Pitches;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class AiPitchesAdapter implements GetAiPitchesPort, GenerateAiPitchesPort {
-    private Map<Pitch, Integer> aiPitches = new HashMap<>();
+    private Pitches aiPitches;
 
     @Override
     public void generate() {
-        aiPitches = new HashMap<>();
-        Set<Integer> randomPitches = new HashSet<>();
+        aiPitches = new Pitches();
+        Set<Integer> randomValueSet = getRandomValueSet();
 
-        while (randomPitches.size() < 3) {
-            randomPitches.add(Randoms.pickNumberInRange(1, 9));
+        for (int value : randomValueSet) {
+            aiPitches.add(new Pitch(value));
         }
 
-        int index = 0;
+    }
 
-        for (int pitch : randomPitches) {
-            aiPitches.put(new Pitch(pitch), index);
-            index++;
+    Set<Integer> getRandomValueSet() {
+        Set<Integer> values = new LinkedHashSet<>();
+
+        while (values.size() < 3) {
+            values.add(Randoms.pickNumberInRange(1, 9));
         }
+
+        return values;
     }
 
     @Override
-    public Map<Pitch, Integer> getAiPitches() {
+    public Pitches getAiPitches() {
         return aiPitches;
     }
 }

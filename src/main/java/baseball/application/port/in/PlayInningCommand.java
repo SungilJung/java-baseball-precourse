@@ -1,40 +1,38 @@
 package baseball.application.port.in;
 
 import baseball.domain.Pitch;
+import baseball.domain.Pitches;
 import baseball.util.PitchCheck;
 import baseball.util.SelfValidating;
-import java.util.HashMap;
-import java.util.Map;
 
 public class PlayInningCommand extends SelfValidating<PlayInningCommand> {
 
     @PitchCheck
     private final String userInput;
 
-    private Map<Pitch, Integer> playerPitchMap;
+    private Pitches playerPitches;
 
     public PlayInningCommand(String userInput) {
         this.userInput = userInput;
         super.validateSelf();
     }
 
-    public Map<Pitch, Integer> getPlayerPitches() {
+    public Pitches getPlayerPitches() {
 
-        if (playerPitchMap == null) {
-            playerPitchMap = createPitches();
+        if (playerPitches == null) {
+            playerPitches = createPitches();
         }
 
-        return playerPitchMap;
+        return playerPitches;
     }
 
-    private Map<Pitch, Integer> createPitches() {
-        Map<Pitch, Integer> pitchMap = new HashMap<>();
+    private Pitches createPitches() {
+        Pitches pitches = new Pitches();
 
-        for (int index = 0; index < userInput.length(); index++) {
-            char element = userInput.charAt(index);
-            pitchMap.put(new Pitch(Character.getNumericValue(element)), index);
+        for (char element : userInput.toCharArray()) {
+            pitches.add(new Pitch(Character.getNumericValue(element)));
         }
 
-        return pitchMap;
+        return pitches;
     }
 }
