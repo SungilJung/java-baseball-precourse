@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 
 class PlayInningServiceTest {
@@ -41,7 +40,7 @@ class PlayInningServiceTest {
                                 .collect(Collectors.toMap(data -> (Kind) data[0], data -> (Integer) data[1])))));
     }
 
-    private @NotNull PitchingResult createResult(@NotNull Map<Kind, Integer> dataMap) {
+    private PitchingResult createResult(Map<Kind, Integer> dataMap) {
         PitchingResult result = new PitchingResult();
 
         for (Entry<Kind, Integer> entry : dataMap.entrySet()) {

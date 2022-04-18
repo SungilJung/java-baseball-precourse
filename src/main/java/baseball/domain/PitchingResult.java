@@ -3,9 +3,13 @@ package baseball.domain;
 import java.util.EnumMap;
 import java.util.Map;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @EqualsAndHashCode
+@ToString
 public class PitchingResult {
+    private static final int OUT = 3;
+
     public enum Kind {
         BALL, STRIKE, NOTHING
     }
@@ -19,5 +23,9 @@ public class PitchingResult {
 
     public PitchingResultCount getCount(Kind kind) {
         return resultMap.getOrDefault(kind, new PitchingResultCount(0));
+    }
+
+    public boolean isFinish() {
+        return OUT == resultMap.getOrDefault(Kind.STRIKE, new PitchingResultCount(0)).count;
     }
 }
