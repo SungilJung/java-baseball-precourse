@@ -29,6 +29,7 @@ class PitchesTest {
         PitchingResult pitchingResult = pitches.compareTo(pitches);
 
         assertEquals(new PitchingResultCount(3), pitchingResult.getCount(Kind.STRIKE));
+        assertTrue(pitchingResult.isFinish());
 
     }
 
@@ -47,6 +48,7 @@ class PitchesTest {
         PitchingResult pitchingResult = p1.compareTo(p2);
 
         assertEquals(new PitchingResultCount(3), pitchingResult.getCount(Kind.BALL));
+        assertFalse(pitchingResult.isFinish());
     }
 
     @Test
@@ -64,6 +66,8 @@ class PitchesTest {
         PitchingResult pitchingResult = p1.compareTo(p2);
 
         assertEquals(new PitchingResultCount(3), pitchingResult.getCount(Kind.NOTHING));
+        assertFalse(pitchingResult.isFinish());
+
     }
 
     @Test
@@ -83,6 +87,8 @@ class PitchesTest {
         assertAll(() -> assertEquals(new PitchingResultCount(1), pitchingResult.getCount(Kind.STRIKE)),
                 () -> assertEquals(new PitchingResultCount(1), pitchingResult.getCount(Kind.BALL)),
                 () -> assertEquals(new PitchingResultCount(1), pitchingResult.getCount(Kind.NOTHING)));
+        assertFalse(pitchingResult.isFinish());
+
     }
 
 }
