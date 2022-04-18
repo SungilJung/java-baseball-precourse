@@ -22,7 +22,7 @@ public class AiPitchesAdapter implements GetAiPitchesPort, GenerateAiPitchesPort
 
     }
 
-    Set<Integer> getRandomValueSet() {
+    private Set<Integer> getRandomValueSet() {
         Set<Integer> values = new LinkedHashSet<>();
 
         while (values.size() < 3) {
